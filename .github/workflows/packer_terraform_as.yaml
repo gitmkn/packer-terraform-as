@@ -31,7 +31,7 @@ jobs:
           then
             wget https://releases.hashicorp.com/packer/1.9.1/packer_1.9.1_linux_amd64.zip
             unzip packer_1.9.1_linux_amd64.zip
-            sudo mv packer /usr/local/bin/
+            y | sudo mv packer /usr/local/bin/
           else
             echo "Packer is already installed"
           fi
