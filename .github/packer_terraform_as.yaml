@@ -1,0 +1,40 @@
+name: Build and deploy app
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Packer
+        run: |
+          wget https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip
+          unzip packer_1.7.4_linux_amd64.zip
+          sudo mv packer /usr/local/bin/
+
+      - name: Install Terraform
+        run: |
+          wget https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_amd64.zip
+          unzip terraform_1.0.9_linux_amd64.zip
+          sudo mv terraform /usr/local/bin/
+
+#      - name: Build image
+#        run: packer build myapp.json
+#
+#      - name: Initialize Terraform
+#        run: terraform init
+#
+#      - name: Apply Terraform
+#        run: terraform apply -auto-approve
+
+
+      - name: Build image
+        run: packer version
+
+      - name: Build image
+        run: terraform version
