@@ -25,7 +25,7 @@ jobs:
         run: |
           if ! command -v packer &> /dev/null
           then
-            wget https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip
+            wget https://releases.hashicorp.com/packer/1.7.4/packer_1.9.1_linux_amd64.zip
             unzip packer_1.7.4_linux_amd64.zip
             sudo mv packer /usr/local/bin/
           else
@@ -61,10 +61,10 @@ jobs:
 #        run: |
 #          echo "Has replied yes"
 
-      - name: Build image
+      - name: packer version
         run: packer version
 
-      - name: Build image
+      - name: terraform version
         run: terraform version
 
       - name: Build image
