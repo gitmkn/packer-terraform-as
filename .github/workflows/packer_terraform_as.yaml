@@ -38,6 +38,20 @@ jobs:
             echo "Terraform is already installed"
           fi
 
+      - name: Send confirmation email
+        uses: actions/email@v1
+        with:
+          subject: 'Confirm deployment to tencent'
+          body: |
+            Are you sure you want to deploy to tencent?
+            Type 'yes' to confirm or 'no' to cancel.
+          to: ${{ github.event.sender.email }}
+
+      - name: Deploy to AWS
+        if: steps.confirm.outputs.body == 'yes'
+        run: |
+          echo "Has replied yes"
+
       - name: Build image
         run: packer version
 
