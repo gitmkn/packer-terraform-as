@@ -29,8 +29,9 @@ jobs:
 
           if ! command -v packer &> /dev/null
           then
-            wget https://releases.hashicorp.com/packer/1.9.1/packer_1.9.1_linux_amd64.zip
-            y | unzip packer_1.9.1_linux_amd64.zip
+            wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+            echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+            sudo apt update && sudo apt install packer
             y | sudo mv packer /usr/local/bin/
           else
             echo "Packer is already installed"
