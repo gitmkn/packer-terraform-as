@@ -18,15 +18,25 @@ jobs:
 
       - name: Download and install Packer
         run: |
-          wget https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip
-          unzip packer_1.7.4_linux_amd64.zip
-          sudo mv packer /usr/local/bin/
+          if ! command -v packer &> /dev/null
+          then
+            wget https://releases.hashicorp.com/packer/1.7.4/packer_1.7.4_linux_amd64.zip
+            unzip packer_1.7.4_linux_amd64.zip
+            sudo mv packer /usr/local/bin/
+          else
+            echo "Packer is already installed"
+          fi
 
       - name: Download and install Terraform
         run: |
-          wget https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_amd64.zip
-          unzip terraform_1.0.9_linux_amd64.zip
-          sudo mv terraform /usr/local/bin/
+          if ! command -v terraform &> /dev/null
+          then
+            wget https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_amd64.zip
+            unzip terraform_1.0.9_linux_amd64.zip
+            sudo mv terraform /usr/local/bin/
+          else
+            echo "Terraform is already installed"
+          fi
 
 #      - name: Build image
 #        run: packer build myapp.json
