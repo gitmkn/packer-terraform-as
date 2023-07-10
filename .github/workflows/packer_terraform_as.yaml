@@ -32,12 +32,6 @@ jobs:
             echo "Packer is already installed"
           fi
 
-      - name: Install tencentcloud-cvm builder
-        run: |
-          packer init packer/packer_tencentcloud_cvm_jenkins_1.0.json
-          packer version
-          packer plugin install tencentcloud-cvm
-
       - name: Download and install Terraform
         run: |
           if ! command -v terraform &> /dev/null
