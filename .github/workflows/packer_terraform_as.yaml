@@ -68,7 +68,10 @@ jobs:
         run: terraform version
 
       - name: Build image
-        run: packer build packer/packer_tencentcloud_cvm_jenkins_1.0.json
+        run: |
+          pwd
+          cd packer/
+          packer build packer_tencentcloud_cvm_jenkins_1.0.json
 #
 #      - name: Initialize Terraform
 #        run: terraform init
