@@ -23,6 +23,10 @@ jobs:
 
       - name: Download and install Packer
         run: |
+          sudo rm /usr/local/bin/packer
+          rm -rf ~/.packer.d
+          rm -rf ~/.packer_cache
+
           if ! command -v packer &> /dev/null
           then
             wget https://releases.hashicorp.com/packer/1.9.1/packer_1.9.1_linux_amd64.zip
