@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  TENCENTCLOUD_REGION: ap-guangzhou
+  TENCENTCLOUD_SECRET_KEY: ${{ secrets.TENCENTCLOUD_SECRET_KEY }}
+  TENCENTCLOUD_SECRET_ID: ${{ secrets.TENCENTCLOUD_SECRET_ID }}
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -62,8 +67,8 @@ jobs:
       - name: Build image
         run: terraform version
 
-#      - name: Build image
-#        run: packer build myapp.json
+      - name: Build image
+        run: packer build packer/packer_tencentcloud_cvm_jenkins_1.0.json
 #
 #      - name: Initialize Terraform
 #        run: terraform init
