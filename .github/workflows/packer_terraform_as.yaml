@@ -38,19 +38,23 @@ jobs:
             echo "Terraform is already installed"
           fi
 
-      - name: Send confirmation email
-        uses: dawidd6/action-send-mail@v2
-        with:
-          subject: 'Confirm deployment to tencent'
-          body: |
-            Are you sure you want to deploy to tencent?
-            Type 'yes' to confirm or 'no' to cancel.
-          to: ${{ github.event.sender.email }}
-
-      - name: Deploy to AWS
-        if: steps.confirm.outputs.body == 'yes'
-        run: |
-          echo "Has replied yes"
+#      - name: Send confirmation email
+#        uses: dawidd6/action-send-mail@v2
+#        with:
+#          server_address: smtp.gmail.com
+#          server_port: 587
+#          username: ${{ secrets.EMAIL_USERNAME }}
+#          password: ${{ secrets.EMAIL_PASSWORD }}
+#          subject: 'Confirm deployment to tencentcloud'
+#          body: |
+#            Are you sure you want to deploy to tencentcloud?
+#            Type 'yes' to confirm or 'no' to cancel.
+#          to: ${{ github.event.sender.email }}
+#
+#      - name: Deploy to AWS
+#        if: steps.confirm.outputs.body == 'yes'
+#        run: |
+#          echo "Has replied yes"
 
       - name: Build image
         run: packer version
