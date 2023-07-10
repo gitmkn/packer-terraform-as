@@ -38,6 +38,12 @@ jobs:
             echo "Terraform is already installed"
           fi
 
+      - name: Build image
+        run: packer version
+
+      - name: Build image
+        run: terraform version
+
 #      - name: Build image
 #        run: packer build myapp.json
 #
@@ -47,8 +53,3 @@ jobs:
 #      - name: Apply Terraform
 #        run: terraform apply -auto-approve
 
-      - name: Build image
-        run: packer version
-
-      - name: Build image
-        run: terraform version
