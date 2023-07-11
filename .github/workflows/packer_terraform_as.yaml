@@ -22,19 +22,16 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y unzip wget
 
       - name: Download and install Packer
-        uses: hashicorp/setup-packer@v1
-        with:
-          version: 1.9.1
-#        run: |
-#          if ! command -v packer &> /dev/null
-#          then
-#            wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-#            echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-#            sudo apt update && sudo apt install packer
-#            y | sudo mv packer /usr/local/bin/
-#          else
-#            echo "Packer is already installed"
-#          fi
+        run: |
+          if ! command -v packer &> /dev/null
+          then
+            wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+            echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+            sudo apt update && sudo apt install packer
+            y | sudo mv packer /usr/local/bin/
+          else
+            echo "Packer is already installed"
+          fi
 
       - name: Download and install Terraform
         run: |
@@ -47,23 +44,14 @@ jobs:
             echo "Terraform is already installed"
           fi
 
-#      - name: Send confirmation email
-#        uses: dawidd6/action-send-mail@v2
-#        with:
-#          server_address: smtp.gmail.com
-#          server_port: 587
-#          username: ${{ secrets.EMAIL_USERNAME }}
-#          password: ${{ secrets.EMAIL_PASSWORD }}
-#          subject: 'Confirm deployment to tencentcloud'
-#          body: |
-#            Are you sure you want to deploy to tencentcloud?
-#            Type 'yes' to confirm or 'no' to cancel.
-#          to: ${{ github.event.sender.email }}
-#
-#      - name: Deploy to AWS
-#        if: steps.confirm.outputs.body == 'yes'
-#        run: |
-#          echo "Has replied yes"
+      - name: Download and install Packer plugin
+        run: |
+          if ! command -v packer tencentcloud &> /dev/null
+          then
+            packer plugins install github.com/hashicorp/tencentcloud
+          else
+            echo "Terraform is already installed"
+          fi
 
       - name: packer version
         run: packer version
