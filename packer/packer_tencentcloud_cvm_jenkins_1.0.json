@@ -1,7 +1,8 @@
 {
   "variables": {
     "secret_id": "{{env `TENCENTCLOUD_SECRET_ID`}}",
-    "secret_key": "{{env `TENCENTCLOUD_SECRET_KEY`}}"
+    "secret_key": "{{env `TENCENTCLOUD_SECRET_KEY`}}",
+    "version": "{{env `RELEASE_VERSION`}}"
   },
   "builders": [
     {
@@ -13,7 +14,7 @@
       "instance_type": "SA3.MEDIUM2",
       "source_image_id": "img-9xqekomx",
       "ssh_username": "root",
-      "image_name": "PackerTest-terraform-as-1",
+      "image_name": "Packer-terraform-as-{{user `version`}}",
       "disk_type": "CLOUD_PREMIUM",
       "packer_debug": true,
       "associate_public_ip_address": true,
