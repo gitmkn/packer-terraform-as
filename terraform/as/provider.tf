@@ -16,5 +16,5 @@ terraform {
 
 
 provider "tencentcloud" {
-  region     = "ap-guangzhou"
+  region     = var.region
 }
