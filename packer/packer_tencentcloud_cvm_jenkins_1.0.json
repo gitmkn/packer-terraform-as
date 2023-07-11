@@ -28,9 +28,12 @@
       "yum install nginx -y",
       "cd /etc/nginx",
       "nginx",
+      "cd ~",
+      "mkdir release—version",
+      "cd release—version",
       "wget https://github.com/gitmkn/packer_terraform_as/archive/refs/tags/v1.0.3.tar.gz",
       "tar -zxvf v1.0.3.tar.gz",
-      "sudo cp packer-terraform-as-1.0.3/business/* /usr/share/nginx/html/",
+      "sudo cp packer_terraform_as-1.0.3/business/* /usr/share/nginx/html/",
       "nginx -s reload"
     ]
   }]
