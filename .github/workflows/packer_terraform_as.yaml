@@ -45,6 +45,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -52,12 +53,20 @@ jobs:
       - name: Install Packer and Terraform dependencies
         run: sudo apt-get update && sudo apt-get install -y unzip wget
 
+      - name: Get latest release version
+        id: get_version
+        run: echo ::set-output name=version::$(curl --silent "https://api.github.com/repos/gitmkn/packer_terraform_as/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+
+      - name: Use the version number
+        run: echo "The latest release version is ${{ steps.get_version.outputs.version }}"
+
       - name: Download and install Terraform
         run: |
+          VERSION=$(echo "${{ steps.get_version.outputs.version }}")
           if ! command -v terraform &> /dev/null
           then
-            wget https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_amd64.zip
-            unzip terraform_1.0.9_linux_amd64.zip
+            wget https://releases.hashicorp.com/terraform/$VERSION/terraform_$VERSION_linux_amd64.zip
+            unzip terraform_$VERSION_linux_amd64.zip
             sudo mv terraform /usr/local/bin/
           else
             echo "Terraform is already installed"
