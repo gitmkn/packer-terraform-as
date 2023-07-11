@@ -88,8 +88,8 @@ resource "tencentcloud_as_scaling_group" "scaling_group" {
     load_balancer_id = tencentcloud_clb_instance.internal_clb.id
     listener_id      = tencentcloud_clb_listener.HTTP_listener.listener_id
     target_attribute {
-      port   = 8080
-      weight = 90
+      port   = 80
+      weight = 10
     }
   }
 
