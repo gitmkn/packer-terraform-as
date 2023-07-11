@@ -10,7 +10,7 @@
       "secret_key": "{{user `secret_key`}}",
       "region": "ap-guangzhou",
       "zone": "ap-guangzhou-6",
-      "instance_type": "SA2.SMALL1",
+      "instance_type": "SA3.MEDIUM2",
       "source_image_id": "img-9xqekomx",
       "ssh_username": "root",
       "image_name": "PackerTest-terraform-as-1",
