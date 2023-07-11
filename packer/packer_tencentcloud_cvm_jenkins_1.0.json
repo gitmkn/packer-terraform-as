@@ -33,14 +33,9 @@
   "provisioners": [{
     "type": "shell",
     "inline": [
-      "cd /root/",
-      "yes | sudo dnf install java-11-openjdk-devel",
-      "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
-      "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key",
-      "sudo sed -i 's/gpgcheck=1/gpgcheck=0/g' /etc/yum.repos.d/jenkins.repo",
-      "yes | sudo dnf install jenkins",
-      "sudo systemctl start jenkins",
-      "sudo systemctl enable jenkins"
+      "yum install nginx -y",
+      "cd /etc/nginx",
+      "nginx"
     ]
   }]
 }
