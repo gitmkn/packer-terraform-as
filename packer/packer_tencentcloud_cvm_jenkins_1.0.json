@@ -34,7 +34,8 @@
       "wget https://github.com/gitmkn/packer_terraform_as/archive/refs/tags/v1.0.3.tar.gz",
       "tar -zxvf v1.0.3.tar.gz",
       "sudo cp packer_terraform_as-1.0.3/business/* /usr/share/nginx/html/",
-      "nginx -s reload"
+      "nginx -s reload",
+      "sudo systemctl enable nginx"
     ]
   }]
 }

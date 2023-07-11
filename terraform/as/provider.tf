@@ -6,6 +6,15 @@ terraform {
   }
 }
 
+terraform {
+  backend "cos" {
+    region = "ap-guangzhou"
+    bucket = "packer-terraform-as-1253833068"
+    prefix = "terraform/state"
+  }
+}
+
+
 provider "tencentcloud" {
   region     = "ap-guangzhou"
 }

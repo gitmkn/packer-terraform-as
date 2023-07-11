@@ -3,11 +3,11 @@ variable "availability_zone" {
 }
 
 variable "instance_type" {
-  default = "SA1.SMALL1"
+  default = "SA2.MEDIUM2"
 }
 
 variable "min_size" {
-  default = 2
+  default = 1
 }
 
 variable "max_size" {
@@ -15,7 +15,7 @@ variable "max_size" {
 }
 
 variable "desired_capacity" {
-  default = 2
+  default = 1
 }
 
 variable "cvm_product" {
