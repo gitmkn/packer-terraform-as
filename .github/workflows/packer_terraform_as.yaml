@@ -60,11 +60,6 @@ jobs:
       - name: cd terraform ...
         run: |
           cd terraform/as
-          pwd
-
-      - name: Initialize Terraform
-        run: terraform init
-
-      - name: Apply Terraform
-        run: terraform apply -auto-approve
+          terraform init
+          terraform apply -auto-approve
 

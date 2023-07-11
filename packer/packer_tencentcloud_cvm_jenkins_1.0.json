@@ -18,7 +18,7 @@
       "packer_debug": true,
       "associate_public_ip_address": true,
       "run_tags": {
-        "good": "luck"
+        "packer": "packer+terraform+as"
       }
     }
   ],
