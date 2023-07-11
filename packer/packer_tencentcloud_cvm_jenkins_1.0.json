@@ -22,14 +22,6 @@
       }
     }
   ],
-  "post-processors": [
-    {
-      "type": "shell-local",
-      "inline": [
-        "echo 'IMAGE_ID={{.ImageId}}' > ./env.txt"
-      ]
-    }
-  ],
   "provisioners": [{
     "type": "shell",
     "inline": [
