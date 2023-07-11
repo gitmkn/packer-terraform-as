@@ -58,7 +58,9 @@ jobs:
           packer build packer/packer_tencentcloud_cvm_jenkins_1.0.json
 
       - name: cd terraform ...
-        run: cd terraform/as
+        run: |
+          cd terraform/as
+          pwd
 
       - name: Initialize Terraform
         run: terraform init
