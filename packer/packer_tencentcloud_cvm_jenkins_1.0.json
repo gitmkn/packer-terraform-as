@@ -35,7 +35,9 @@
     "inline": [
       "yum install nginx -y",
       "cd /etc/nginx",
-      "nginx"
+      "nginx",
+      "sudo cp packer-terraform-as/business/* /usr/share/nginx/html/",
+      "nginx -s reload"
     ]
   }]
 }
