@@ -60,13 +60,9 @@ jobs:
       - name: Install Packer and Terraform dependencies
         run: sudo apt-get update && sudo apt-get install -y unzip wget
 
-      - name: Get latest release version
-        id: get_version
-        run: echo ::set-env name=version::$(curl --silent "https://api.github.com/repos/gitmkn/packer_terraform_as/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-
       - name: Set output with release version
         id: set_output
-        run: echo "RELEASE_VERSION=${version}" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=$(curl --silent "https://api.github.com/repos/gitmkn/packer_terraform_as/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')" >> $GITHUB_ENV
 
       - name: Use the version number
         run: echo "The latest release version is ${RELEASE_VERSION}"
@@ -90,5 +86,5 @@ jobs:
         run: |
           cd terraform/as
           terraform init
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var "release_version=${RELEASE_VERSION}"
 

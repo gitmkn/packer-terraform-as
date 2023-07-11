@@ -1,6 +1,6 @@
 data "tencentcloud_images" "my_favorate_image" {
   image_type = ["PRIVATE_IMAGE"]
-  image_name_regex    = "^PackerTest-*"
+  image_name_regex    = "^Packer-terraform-as-${var.release_version}"
 }
 
 resource "tencentcloud_vpc" "vpc" {
