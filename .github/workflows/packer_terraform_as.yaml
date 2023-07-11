@@ -50,7 +50,7 @@ jobs:
           then
             packer plugins install github.com/hashicorp/tencentcloud
           else
-            echo "Terraform is already installed"
+            echo "Packer plugins is already installed"
           fi
 
       - name: packer version
