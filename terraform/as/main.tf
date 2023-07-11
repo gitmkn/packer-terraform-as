@@ -81,7 +81,7 @@ resource "tencentcloud_as_scaling_group" "scaling_group" {
   project_id           = 0
   default_cooldown     = 400
   desired_capacity     = var.desired_capacity
-  termination_policies = ["NEWEST_INSTANCE"]
+  termination_policies = ["OLDEST_INSTANCE"]
   retry_policy         = "INCREMENTAL_INTERVALS"
 
   forward_balancer_ids {
