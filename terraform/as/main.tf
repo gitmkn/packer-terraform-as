@@ -64,7 +64,7 @@ resource "tencentcloud_clb_listener" "HTTP_listener" {
   health_check_type          = "TCP"
   health_check_unhealth_num  = 3
   listener_name              = "packer-jerkins-listener"
-  port                       = 8080
+  port                       = 80
   protocol                   = "TCP"
   scheduler                  = "WRR"
 #  sni_switch                 = false
