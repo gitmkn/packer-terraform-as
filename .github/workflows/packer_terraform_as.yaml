@@ -45,13 +45,7 @@ jobs:
           fi
 
       - name: Download and install Packer plugin
-        run: |
-          if ! command -v packer tencentcloud &> /dev/null
-          then
-            packer plugins install github.com/hashicorp/tencentcloud
-          else
-            echo "Packer plugins is already installed"
-          fi
+        run: packer plugins install github.com/hashicorp/tencentcloud
 
       - name: packer version
         run: packer version
