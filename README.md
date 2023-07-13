@@ -33,3 +33,5 @@
 
 ### 应用部署结果
 ![img.png](imgs/2048.png)
+
+<small>业务应用代码来源：https://github.com/bodhiye/2048</small> 
