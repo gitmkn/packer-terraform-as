@@ -23,5 +23,5 @@ jobs:
             echo "RELEASE_VERSION=${{ github.event.release.tag_name }}"
           fi
 
-#      - name: Use the PR number or Release version
-#        run: echo "PR number or Release version ${RELEASE_VERSION}"
+      - name: Use the PR number or Release version
+        run: echo "PR number or Release version ${RELEASE_VERSION}"
