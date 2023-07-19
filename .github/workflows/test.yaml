@@ -29,5 +29,5 @@ jobs:
           status: ${{ job.status }}
           text: "Event: ${{ github.event_name }}\nType: ${{ github.event.pull_request ? 'PR' : 'Release' }}\nNumber: ${{ github.event.pull_request?.number }}${{ github.event.release?.tag_name ? '' : (github.event.release?.name ? ' (' + github.event.release?.name + ')' : '') }}"
 
-  outputs:
-    status: ${{ steps.run-tests.outputs.status }}
+      - name: Use the version number
+        run: echo "name- ${Type}, number- ${Number}"
