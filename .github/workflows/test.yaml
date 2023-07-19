@@ -15,9 +15,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Get PR number and Release version
-          run: |
-            if [ "${{ github.event_name }}" == "pull_request" ]; then
-              echo "PR number: ${{ github.event.number }}"
-            elif [ "${{ github.event_name }}" == "release" ]; then
-              echo "Release version: ${{ github.event.release.tag_name }}"
-            fi
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "PR number: ${{ github.event.number }}"
+          elif [ "${{ github.event_name }}" == "release" ]; then
+            echo "Release version: ${{ github.event.release.tag_name }}"
+          fi
