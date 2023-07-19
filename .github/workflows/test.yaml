@@ -18,9 +18,9 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
             echo "PR number: ${{ github.event.number }}"
-            echo "RELEASE_VERSION=${{ github.event.number }}"
+            echo "RELEASE_VERSION=${{ github.event.number }}" >> $GITHUB_ENV
           elif [ "${{ github.event_name }}" == "release" ]; then
-            echo "RELEASE_VERSION=${{ github.event.release.tag_name }}"
+            echo "RELEASE_VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
           fi
 
       - name: Use the PR number or Release version
