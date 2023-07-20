@@ -59,7 +59,7 @@ variable "public_ip_assigned" {
 
 variable "password" {
   type        = string
-  default     = "Packer+terraform+as"
+  default     = "Test#123456"
   description = "as config password."
 }
 
