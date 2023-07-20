@@ -4,6 +4,6 @@ output "clb_instance_id" {
 }
 
 output "clb_listener_id" {
-  value       = tencentcloud_clb_listener.clb_listener.id
+  value       = tencentcloud_clb_listener.clb_listener.listener_id
   description = "clb listener Id"
 }

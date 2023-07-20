@@ -53,7 +53,7 @@ variable "internet_max_bandwidth_out" {
 
 variable "public_ip_assigned" {
   type        = bool
-  default     = false
+  default     = true
   description = "public ip assigned."
 }
 
