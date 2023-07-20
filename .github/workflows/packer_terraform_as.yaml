@@ -95,7 +95,7 @@ jobs:
 
       - name: cd terraform ...
         run: |
-          cd terraform/as
+          cd terraform
           terraform init
-          terraform apply -auto-approve -var "release_version=${RELEASE_VERSION}"
+          terraform apply -auto-approve -var "image_version=${RELEASE_VERSION}"
 
