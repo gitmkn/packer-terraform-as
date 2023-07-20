@@ -16,5 +16,5 @@ terraform {
 
 
 provider "tencentcloud" {
-  region     = var.region
+  region = var.region
 }

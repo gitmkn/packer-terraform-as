@@ -1,6 +1,9 @@
 name: Build and deploy app
 
 on:
+  pull_request:
+    branches:
+      - main
   release:
     types: [published]
 
@@ -16,12 +19,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set output with release version
-        id: set_output
-        run: echo "RELEASE_VERSION=$(curl --silent "https://api.github.com/repos/gitmkn/packer_terraform_as/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')" >> $GITHUB_ENV
+      - name: Get PR number or Release version
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "PR number: ${{ github.event.number }}"
+            echo "RELEASE_VERSION=${{ github.event.number }}" >> $GITHUB_ENV
+          elif [ "${{ github.event_name }}" == "release" ]; then
+            echo "RELEASE_VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+          fi
 
-      - name: Use the version number
-        run: echo "The latest release version is ${RELEASE_VERSION}"
+      - name: Use the PR number or Release version
+        run: echo "PR number or Release version ${RELEASE_VERSION}"
 
       - name: Install Packer and Terraform dependencies
         run: sudo apt-get update && sudo apt-get install -y unzip wget
@@ -58,12 +66,17 @@ jobs:
       - name: Install Packer and Terraform dependencies
         run: sudo apt-get update && sudo apt-get install -y unzip wget
 
-      - name: Set output with release version
-        id: set_output
-        run: echo "RELEASE_VERSION=$(curl --silent "https://api.github.com/repos/gitmkn/packer_terraform_as/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')" >> $GITHUB_ENV
+      - name: Get PR number or Release version
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "PR number: ${{ github.event.number }}"
+            echo "RELEASE_VERSION=${{ github.event.number }}" >> $GITHUB_ENV
+          elif [ "${{ github.event_name }}" == "release" ]; then
+            echo "RELEASE_VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+          fi
 
-      - name: Use the version number
-        run: echo "The latest release version is ${RELEASE_VERSION}"
+      - name: Use the PR number or Release version
+        run: echo "PR number or Release version ${RELEASE_VERSION}"
 
       - name: Download and install Terraform
         run: |
@@ -82,7 +95,7 @@ jobs:
 
       - name: cd terraform ...
         run: |
-          cd terraform/as
+          cd terraform
           terraform init
-          terraform apply -auto-approve -var "release_version=${RELEASE_VERSION}"
+          terraform apply -auto-approve -var "image_version=${RELEASE_VERSION}"
 
