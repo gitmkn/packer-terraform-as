@@ -1,4 +1,2 @@
-.idea/.gitignore
-.idea/modules.xml
-.idea/packer-terraform-as.iml
-.idea/vcs.xml
+.idea/
+.DS_Store
