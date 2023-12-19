@@ -47,3 +47,18 @@ resource "tencentcloud_as_scaling_group" "scaling_group" {
 
   tags = var.tags
 }
+
+# 告警触发策略
+resource "tencentcloud_as_scaling_policy" "scaling_policy" {
+  scaling_group_id    = tencentcloud_as_scaling_group.scaling_group.id
+  policy_name         = "tf-as-scaling-policy"
+  adjustment_type     = "CHANGE_IN_CAPACITY"
+  adjustment_value    = 1
+  comparison_operator = "GREATER_THAN"
+  metric_name         = "CPU_UTILIZATION"
+  threshold           = 80
+  period              = 300
+  continuous_time     = 3
+  statistic           = "AVERAGE"
+  cooldown            = 360
+}
